@@ -1,22 +1,5 @@
-lat	lon	title	description	icon	iconSize	iconOffset
- latitude 	  longitude 	 name 	 <span>Special:   offer </span><p>  description </p>	./img/marker-green.png	24,24	0,-24
-51.722189 	 8.756575 	 Haci Baba 	 <span>Special:  Döner: 2,90 </span><p> Sehr leckere Dönergerichte. In der Woche bis 4:00, WoEnd Ende offen. </p>	./img/marker-green.png	24,24	0,-24
-51.722189 	 8.757873 	 Kebap-Haus Silo's 	 <span>Special:  Döner: 3,00 </span><p> Leckere Gyrosspezialitäten. In der Woche bis 3:00, WoEnd bis 5:00. </p>	./img/marker-green.png	24,24	0,-24
-51.72193 	 8.757187 	 Gyros Grill Ilois 	 <span>Special:  Gyros Pita: 3,40 </span><p> Gyros-Imbiss mit angeschlossenem Bistro. In der Woche bis 1:00, WoEnd bis 1:30 </p>	./img/marker-green.png	24,24	0,-24
-51.721664 	 8.7565 	 Firat Grill 	 <span>Special:  Döner: 3,00 </span><p> Mittwochs gibts den Döner für 2 Euro. In der Woche bis 2:00, WoEnd bis 3:00 </p>	./img/marker-green.png	24,24	0,-24
-51.721186 	 8.757122 	 Mevlana 	 <span>Special:  Döner: 2,50 </span><p> Türkische Spezialitäten. Wer es braucht und nachfragt bekommt das Essen hier extra-extrascharf. Immer bis 24:00 </p>	./img/marker-green.png	24,24	0,-24
-51.720242 	 8.760437 	 Entenhaus 	 <span>Special:   </span><p> Hier gibts leckere Enten satt. Immer bis 23:00 </p>	./img/marker-green.png	24,24	0,-24
-51.717111 	 8.757444 	 Burger Point 	 <span>Special:  Döner: 3,20 </span><p> Hamburger, Chicken, Döner in allen Kombinationen und es gibt Falafel! In der Woche bis 0:00, WoEnd 2:00 </p>	./img/marker-green.png	24,24	0,-24
-51.717823 	 8.749805 	 Bei Marlies Imbiss 	 <span>Special:  Bratwurst: 1,80 </span><p> Gute deutsche Wurst-Küche. In der Woche bis 1:00, WoEnd bis 6:00 </p>	./img/marker-green.png	24,24	0,-24
-51.718042 	 8.749719 	 Jannis Gyros Grill 	 <span>Special:  Gyros Pita: 3,50 </span><p> Öffnungszeiten sind dem des Sapphos ähnlich. </p>	./img/marker-green.png	24,24	0,-24
-51.717849 	 8.749365 	 Bodrum 	 <span>Special:  Döner: 3,50 </span><p> Direkt an der Zentralstation. In der Woche bis 3:00, WoEnd Ende offen. </p>	./img/marker-green.png	24,24	0,-24
-51.716659 	 8.748078 	 City Grill & Pizzeria 	 <span>Special:  Döner: 3,00 </span><p> Befindet sich in der Cineplex-Passage. Immer bis 1:00 </p>	./img/marker-green.png	24,24	0,-24
-51.7165 	 8.746833 	 Döneria Ali Baba 	 <span>Special:  Döner: 3,00 </span><p> Montag gibts den Döner für 2,30. In der Woche bis 21:00, WoEnd bis 5:00 </p>	./img/marker-green.png	24,24	0,-24
-51.715829 	 8.7462 	 Alanya Grill 	 <span>Special:  Döner: 3,00 </span><p> In der Woche bis 1:00, WoEnd bis 2:00 </p>	./img/marker-green.png	24,24	0,-24
-51.712751 	 8.745803 	 Adane Kebap Haus 	 <span>Special:  Döner: 3,50 </span><p> Alles etwas teurer. In der Woche bis 0:00, WoEnd bis 1:00 </p>	./img/marker-green.png	24,24	0,-24
-51.719451 	 8.745675 	 Pizzeria Cecilia 	 <span>Special:  Pizza Prosciutto 26: 4,30 </span><p> Nichts für Nachteulen, schlieÃŸt immer schon um 23:30 </p>	./img/marker-green.png	24,24	0,-24
-51.720063 	 8.745632 	 China Imbiss Mandarin 	 <span>Special:   </span><p> Liefert auch ins benachbarte "Alles ist gut". Jeden Tag bis 24:00 </p>	./img/marker-green.png	24,24	0,-24
-51.720262 	 8.751221 	 Grill Kos 	 <span>Special:  Bratwurst: 1,80 </span><p> Alles etwas Pommesbuden-schmierig. Am WoEnd bis 3:00 </p>	./img/marker-green.png	24,24	0,-24
-51.715051 	 8.751908 	 Effes Grill 	 <span>Special:  Bratwurst: 1,80 </span><p> Ambiente wird vom hiesigen Bahnübergang dominiert. Effes-Royal Pizza ist eine absolute Empfehlung. </p>	./img/marker-green.png	24,24	0,-24
-51.715958 	 8.751965 	 Wok to Go 	 <span>Special:  Riesenportion Nudeln 3,75 + Extras (Fleisch) </span><p> Leckers Wok Essen. Aber beeilt euch. In den letzten zwei Jahren war quasi schon jede Art von Imbiss mal hier drin. </p>	./img/marker-green.png	24,24	0,-24
-51.720501 	 8.749473 	 La Palme 	 <span>Special:   </span><p> Nette Pizzeria mit empfehlenswerten Mittags-Buffet. </p>	./img/marker-green.png	24,24	0,-24
+---
+title: for openlayers
+---
+lat	lon	title	description	icon	iconSize	iconOffset{% for food in site.data.fast-foods %}
+{{ food.lat }}	{{ food.lon }}	{{ food.name }}	<span>{{ food.special }}</span><p>{{ food.comment }}<br><a href="{{ food.url }}">{{ food.url }}</a></p>	./img/marker-green.png	24,24	0,-24{% endfor %}
