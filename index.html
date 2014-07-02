@@ -1,0 +1,32 @@
+<html><body>
+  <div id="mapdiv"></div>
+  <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+  <script>
+    map = new OpenLayers.Map("mapdiv");
+    map.addLayer(new OpenLayers.Layer.OSM());
+ 
+    var barPois = new OpenLayers.Layer.Text( "Bars",
+                    { location:"./bars.txt",
+                      projection: map.displayProjection
+                    });
+    var foodPois = new OpenLayers.Layer.Text( "Food",
+                    { location:"./food.txt",
+                      projection: map.displayProjection
+                    });
+    map.addLayer(barPois);
+    map.addLayer(foodPois);
+ // create layer switcher widget in top right corner of map.
+    var layer_switcher= new OpenLayers.Control.LayerSwitcher({});
+    map.addControl(layer_switcher);
+    //Set start centrepoint and zoom    
+
+    var lonLat = new OpenLayers.LonLat( 8.752112, 51.715836 )
+          .transform(
+            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            map.getProjectionObject() // to Spherical Mercator Projection
+          );
+    var zoom=11;
+    map.setCenter (lonLat, zoom);  
+ 
+  </script>
+</body></html>
