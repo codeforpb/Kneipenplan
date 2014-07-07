@@ -1,32 +1,206 @@
-<html><body>
-  <div id="mapdiv"></div>
+---
+title: BarMap
+---
+<html>
   <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
   <script>
-    map = new OpenLayers.Map("mapdiv");
-    map.addLayer(new OpenLayers.Layer.OSM());
- 
-    var barPois = new OpenLayers.Layer.Text( "Bars",
-                    { location:"./bars.txt",
-                      projection: map.displayProjection
-                    });
-    var foodPois = new OpenLayers.Layer.Text( "Food",
-                    { location:"./food.txt",
-                      projection: map.displayProjection
-                    });
-    map.addLayer(barPois);
-    map.addLayer(foodPois);
- // create layer switcher widget in top right corner of map.
-    var layer_switcher= new OpenLayers.Control.LayerSwitcher({});
-    map.addControl(layer_switcher);
-    //Set start centrepoint and zoom    
+   var map;
 
-    var lonLat = new OpenLayers.LonLat( 8.752112, 51.715836 )
+   function init2(){
+    map = new OpenLayers.Map('mapdiv');
+            var wms = new OpenLayers.Layer.WMS(
+                "OpenLayers WMS",
+                "http://vmap0.tiles.osgeo.org/wms/vmap0",
+                {layers: 'basic'}
+            );//new OpenLayers.Layer.OSM("OpenStreetMap (Mapnik)");
+            
+            // Create 50 random features, and give them a "type" attribute that
+            // will be used to style them by size.
+            
+       var features = new Array();
+       {% for bar in site.data.bars %}
+           features[{{ forloop.index0 }}] = new OpenLayers.Feature.Vector(
+                 new OpenLayers.Geometry.Point({{ bar.lon }}, {{ bar.lat }}),
+                 {
+                   name: "{{ bar.name }}",
+                   type: 6
+                   {% if bar.special %}
+                     ,special: "{{ bar.special }}"
+                   {% endif %}
+                   {% if bar.comment %}
+                     ,comment: "{{ bar.comment }}"
+                   {% endif %}
+                   {% if bar.link %}
+                     ,link: "{{ bar.link}}"
+                   {% endif %}
+                 }
+               );           
+       {% endfor %}
+          
+            
+            // Create a styleMap to style your features for two different
+            // render intents.  The style for the 'default' render intent will
+            // be applied when the feature is first drawn.  The style for the
+            // 'select' render intent will be applied when the feature is
+            // selected.
+            var myStyles = new OpenLayers.StyleMap({
+                "default": new OpenLayers.Style({
+                    pointRadius: "${type}", // sized according to type attribute
+                    fillColor: "#ffcc66",
+                    strokeColor: "#ff9933",
+                    strokeWidth: 2,
+                    graphicZIndex: 1
+                }),
+                "select": new OpenLayers.Style({
+                    fillColor: "#66ccff",
+                    strokeColor: "#3399ff",
+                    graphicZIndex: 2
+                })
+            });
+            
+            // Create a vector layer and give it your style map.
+            var points = new OpenLayers.Layer.Vector("Points", {
+                styleMap: myStyles,
+                rendererOptions: {zIndexing: true}
+            });
+            points.addFeatures(features);
+            map.addLayers([wms, points]);
+            
+            // Create a select feature control and add it to the map.
+            var select = new OpenLayers.Control.SelectFeature(points, {hover: true});
+            map.addControl(select);
+            select.activate();
+            
+           var lonLat = new OpenLayers.LonLat(8.752112, 51.715836 )
           .transform(
             new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
             map.getProjectionObject() // to Spherical Mercator Projection
           );
-    var zoom=11;
-    map.setCenter (lonLat, zoom);  
+       map.setCenter(lonLat, 15);
+
+   }
+   function init() {
+       map = map = new OpenLayers.Map("mapdiv");
+       var wms = new OpenLayers.Layer.WMS(
+                "OpenLayers WMS",
+                "http://vmap0.tiles.osgeo.org/wms/vmap0",
+                {layers: 'basic'}
+            );
+       // Create 50 random features, and give them a "type" attribute that
+       // will be used to style them by size.
+       var features = new Array(50);
+       for (var i=0; i<features.length; i++) {
+           features[i] = new OpenLayers.Feature.Vector(
+               new OpenLayers.Geometry.Point(
+                   (8.752112+Math.random()), 51.715836+ Math.random()
+               ), {
+                   type: 5 + parseInt(5 * Math.random())
+               }
+           );
+       }
+       var barPois2 = new Array()
+       {% for bar in site.data.bars %}
+           barPois2[{{ forloop.index0 }}] = new OpenLayers.Feature.Vector(
+                 new OpenLayers.Geometry.Point({{ bar.lon }}, {{ bar.lat }}),
+                 {
+                   name: "{{ bar.name }}"
+                   {% if bar.special %}
+                     ,special: "{{ bar.special }}"
+                   {% endif %}
+                   {% if bar.comment %}
+                     ,comment: "{{ bar.comment }}"
+                   {% endif %}
+                   {% if bar.link %}
+                     ,link: "{{ bar.link}}"
+                   {% endif %}
+                 }
+               );           
+       {% endfor %}
+
+       var barStyles = new OpenLayers.StyleMap({
+           "default": new OpenLayers.Style({
+               externalGraphic: "img/marker-gold.png", // sized according to type attribute
+               fillColor: "#ffcc66",
+               strokeColor: "#ff9933",
+               strokeWidth: 2,
+               graphicZIndex: 1
+           }),
+           "select": new OpenLayers.Style({
+               fillColor: "#66ccff",
+               strokeColor: "#3399ff",
+               graphicZIndex: 2
+           })
+       });
+
+       // Create a vector layer and give it your style map.
+       var barPoints = new OpenLayers.Layer.Vector("Bar Points", {
+           styleMap: barStyles,
+           rendererOptions: {zIndexing: true}
+       });
+       barPoints.addFeatures(barPois2);
+
+       var select2 = new OpenLayers.Control.SelectFeature(barPoints, {hover: true});
+       map.addControl(select2);
+       select2.activate();
+
+       // Create a styleMap to style your features for two different
+       // render intents.  The style for the 'default' render intent will
+       // be applied when the feature is first drawn.  The style for the
+       // 'select' render intent will be applied when the feature is
+       // selected.
+       var myStyles = new OpenLayers.StyleMap({
+           "default": new OpenLayers.Style({
+               pointRadius: "6", // sized according to type attribute
+               fillColor: "#ffcc66",
+               strokeColor: "#ff9933",
+               strokeWidth: 2,
+               graphicZIndex: 1
+           }),
+           "select": new OpenLayers.Style({
+               fillColor: "#66ccff",
+               strokeColor: "#3399ff",
+               graphicZIndex: 2
+           })
+       });
+       
+       // Create a vector layer and give it your style map.
+       var points = new OpenLayers.Layer.Vector("Points", {
+           styleMap: myStyles,
+           rendererOptions: {zIndexing: true}
+       });
+
+       
+       // Create a select feature control and add it to the map.
+       var select = new OpenLayers.Control.SelectFeature(points, {hover: true});
+       map.addControl(select);
+       select.activate();
+       
+
+   
+ 
+
+       var foodPois = new OpenLayers.Layer.Text( "Food",
+               { location:"./food.txt",
+                 projection: map.displayProjection
+               });
+       map.addLayers([wms, points, barPoints, foodPois]);
+       // create layer switcher widget in top right corner of map.
+       var layer_switcher= new OpenLayers.Control.LayerSwitcher({});
+
+       map.addControl(layer_switcher);
+       //Set start centrepoint and zoom    
+
+       var lonLat = new OpenLayers.LonLat(8.752112, 51.715836 )
+          .transform(
+            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            map.getProjectionObject() // to Spherical Mercator Projection
+          );
+       map.setCenter(lonLat, 15);
+   }
+
  
   </script>
+<body onload="init2()">
+<h1 id="title">BarMap</h1>
+  <div id="mapdiv"></div>
 </body></html>

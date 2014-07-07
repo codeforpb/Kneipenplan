@@ -1,0 +1,116 @@
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<Document>
+	<name>Sundial Collection.kmz</name>
+	<StyleMap id="msn_sunny_copy70">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_sunny_copy69</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_sunny_copy70</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sh_sunny_copy69">
+		<IconStyle>
+			<scale>1.4</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/sunny.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ff00aaff</color>
+		</LabelStyle>
+	</Style>
+	<Style id="sn_sunny_copy68">
+		<IconStyle>
+			<scale>1.2</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/sunny.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ff00aaff</color>
+		</LabelStyle>
+	</Style>
+	<Style id="sn_sunny_copy69">
+		<IconStyle>
+			<scale>1.2</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/sunny.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ff00aaff</color>
+		</LabelStyle>
+	</Style>
+	<Style id="sh_sunny_copy70">
+		<IconStyle>
+			<scale>1.4</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/shapes/sunny.png</href>
+			</Icon>
+			<hotSpot x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+		<LabelStyle>
+			<color>ff00aaff</color>
+		</LabelStyle>
+	</Style>
+	<StyleMap id="msn_sunny_copy69">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_sunny_copy68</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_sunny_copy69</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Folder>
+		<name>Sundial Collection</name>
+		<open>1</open>
+		<LookAt>
+			<longitude>-56.6884384968692</longitude>
+			<latitude>47.91963617483238</latitude>
+			<altitude>0</altitude>
+			<range>9958750.824018393</range>
+			<tilt>1.303827428939919e-015</tilt>
+			<heading>-16.31426621668193</heading>
+		</LookAt>
+		<Style>
+			<ListStyle>
+				<listItemType>check</listItemType>
+				<bgColor>00ffffff</bgColor>
+			</ListStyle>
+		</Style>
+		<Folder>
+			<name>High Resolution</name>{% for bar in site.categories.bars %}
+			<Placemark>
+				<name><![CDATA[{% if bar.link %}
+                                  <a href="{{ bar.link }}">{{ bar.name }}</a>
+                               {% else %}
+                                  {{ bar.name }}
+                               {% endif %}]]></name>
+				<description><![CDATA[<span class="special">{{ bar.special }}</span>{{ bar.content | remove: '<p>' | remove: '</p>'}}]]></description>
+				<LookAt>
+					<longitude>{{ bar.lon }}</longitude>
+					<latitude>{{ bar.lat }}</latitude>
+					<altitude>0</altitude>
+					<range>1</range>
+					<tilt>0</tilt>
+					<heading>0</heading>
+				</LookAt>
+				<styleUrl>#msn_sunny_copy69</styleUrl>
+				<Point>
+					<coordinates>{{ bar.lon }},{{ bar.lat }},0</coordinates>
+				</Point>
+			</Placemark>{% endfor %}
+		</Folder>
+	</Folder>
+</Document>
+</kml>
