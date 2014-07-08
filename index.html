@@ -1,206 +1,113 @@
----
-title: BarMap
----
-<html>
-  <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
-  <script>
-   var map;
 
-   function init2(){
-    map = new OpenLayers.Map('mapdiv');
-            var wms = new OpenLayers.Layer.WMS(
-                "OpenLayers WMS",
-                "http://vmap0.tiles.osgeo.org/wms/vmap0",
-                {layers: 'basic'}
-            );//new OpenLayers.Layer.OSM("OpenStreetMap (Mapnik)");
-            
-            // Create 50 random features, and give them a "type" attribute that
-            // will be used to style them by size.
-            
-       var features = new Array();
-       {% for bar in site.data.bars %}
-           features[{{ forloop.index0 }}] = new OpenLayers.Feature.Vector(
-                 new OpenLayers.Geometry.Point({{ bar.lon }}, {{ bar.lat }}),
-                 {
-                   name: "{{ bar.name }}",
-                   type: 6
-                   {% if bar.special %}
-                     ,special: "{{ bar.special }}"
-                   {% endif %}
-                   {% if bar.comment %}
-                     ,comment: "{{ bar.comment }}"
-                   {% endif %}
-                   {% if bar.link %}
-                     ,link: "{{ bar.link}}"
-                   {% endif %}
-                 }
-               );           
-       {% endfor %}
-          
-            
-            // Create a styleMap to style your features for two different
-            // render intents.  The style for the 'default' render intent will
-            // be applied when the feature is first drawn.  The style for the
-            // 'select' render intent will be applied when the feature is
-            // selected.
-            var myStyles = new OpenLayers.StyleMap({
-                "default": new OpenLayers.Style({
-                    pointRadius: "${type}", // sized according to type attribute
-                    fillColor: "#ffcc66",
-                    strokeColor: "#ff9933",
-                    strokeWidth: 2,
-                    graphicZIndex: 1
-                }),
-                "select": new OpenLayers.Style({
-                    fillColor: "#66ccff",
-                    strokeColor: "#3399ff",
-                    graphicZIndex: 2
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>OpenLayers: bars on a Spherical Mercator Map</title>
+    <script src="http://maps.google.com/maps/api/js?v=3&amp;sensor=false"></script>
+    <link rel="stylesheet" href="../theme/default/style.css" type="text/css">
+    <link rel="stylesheet" href="style.css" type="text/css">
+
+    <style type="text/css">
+        html, body {
+            height: 100%;
+        }
+        #map {
+            width: 100%;
+            height: 80%;
+            border: 1px solid black;
+        }
+        .olPopup p { margin:0px; font-size: .9em;}
+        .olPopup h2 { font-size:1.2em; }
+    </style>
+    <script src="../OpenLayers.js"></script>
+    <script type="text/javascript">
+        var lon = 5;
+        var lat = 40;
+        var zoom = 5;
+        var map, select;
+
+        function init(){
+            var options = {
+                projection: new OpenLayers.Projection("EPSG:900913"),
+                displayProjection: new OpenLayers.Projection("EPSG:4326")
+            };
+            map = new OpenLayers.Map('map', options);
+            var mapnik = new OpenLayers.Layer.OSM("OpenStreetMap (Mapnik)");
+            var bars = new OpenLayers.Layer.Vector("KML", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "kml/bars.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true,
+                        extractAttributes: true
+                    })
                 })
             });
+
+            map.addLayers([mapnik, bars]);
+
+            select = new OpenLayers.Control.SelectFeature(bars);
             
-            // Create a vector layer and give it your style map.
-            var points = new OpenLayers.Layer.Vector("Points", {
-                styleMap: myStyles,
-                rendererOptions: {zIndexing: true}
+            bars.events.on({
+                "featureselected": onFeatureSelect,
+                "featureunselected": onFeatureUnselect
             });
-            points.addFeatures(features);
-            map.addLayers([wms, points]);
-            
-            // Create a select feature control and add it to the map.
-            var select = new OpenLayers.Control.SelectFeature(points, {hover: true});
+  
             map.addControl(select);
-            select.activate();
-            
-           var lonLat = new OpenLayers.LonLat(8.752112, 51.715836 )
+            select.activate();   
+
+            map.addControl(new OpenLayers.Control.LayerSwitcher());
+
+                   var lonLat = new OpenLayers.LonLat(8.752112, 51.715836 )
           .transform(
             new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
             map.getProjectionObject() // to Spherical Mercator Projection
           );
        map.setCenter(lonLat, 15);
-
-   }
-   function init() {
-       map = map = new OpenLayers.Map("mapdiv");
-       var wms = new OpenLayers.Layer.WMS(
-                "OpenLayers WMS",
-                "http://vmap0.tiles.osgeo.org/wms/vmap0",
-                {layers: 'basic'}
+        }
+        function onPopupClose(evt) {
+            select.unselectAll();
+        }
+        function onFeatureSelect(event) {
+            var feature = event.feature;
+            var selectedFeature = feature;
+            var popup = new OpenLayers.Popup.FramedCloud("chicken", 
+                feature.geometry.getBounds().getCenterLonLat(),
+                new OpenLayers.Size(100,100),
+                "<h2>"+feature.attributes.name + "</h2><div class='description'>" + feature.attributes.description + "</div>",
+                null, true, onPopupClose
             );
-       // Create 50 random features, and give them a "type" attribute that
-       // will be used to style them by size.
-       var features = new Array(50);
-       for (var i=0; i<features.length; i++) {
-           features[i] = new OpenLayers.Feature.Vector(
-               new OpenLayers.Geometry.Point(
-                   (8.752112+Math.random()), 51.715836+ Math.random()
-               ), {
-                   type: 5 + parseInt(5 * Math.random())
-               }
-           );
-       }
-       var barPois2 = new Array()
-       {% for bar in site.data.bars %}
-           barPois2[{{ forloop.index0 }}] = new OpenLayers.Feature.Vector(
-                 new OpenLayers.Geometry.Point({{ bar.lon }}, {{ bar.lat }}),
-                 {
-                   name: "{{ bar.name }}"
-                   {% if bar.special %}
-                     ,special: "{{ bar.special }}"
-                   {% endif %}
-                   {% if bar.comment %}
-                     ,comment: "{{ bar.comment }}"
-                   {% endif %}
-                   {% if bar.link %}
-                     ,link: "{{ bar.link}}"
-                   {% endif %}
-                 }
-               );           
-       {% endfor %}
+            feature.popup = popup;
+            map.addPopup(popup);
+        }
+        function onFeatureUnselect(event) {
+            var feature = event.feature;
+            if(feature.popup) {
+                map.removePopup(feature.popup);
+                feature.popup.destroy();
+                delete feature.popup;
+            }
+        }
+    </script>
+  </head>
+  <body onload="init()">
+      <h1 id="title">OSM + Google Maps + KML Reprojection</h1>
 
-       var barStyles = new OpenLayers.StyleMap({
-           "default": new OpenLayers.Style({
-               externalGraphic: "img/marker-gold.png", // sized according to type attribute
-               fillColor: "#ffcc66",
-               strokeColor: "#ff9933",
-               strokeWidth: 2,
-               graphicZIndex: 1
-           }),
-           "select": new OpenLayers.Style({
-               fillColor: "#66ccff",
-               strokeColor: "#3399ff",
-               graphicZIndex: 2
-           })
-       });
+      <div id="tags">
+          osm, kml, spherical, mercator, reprojection, feature, popup, advanced
+      </div>
 
-       // Create a vector layer and give it your style map.
-       var barPoints = new OpenLayers.Layer.Vector("Bar Points", {
-           styleMap: barStyles,
-           rendererOptions: {zIndexing: true}
-       });
-       barPoints.addFeatures(barPois2);
+      <p id="shortdesc">
+          Demonstrates loading and displaying a KML file on top of OpenStreetMap (OSM) and Google Maps data. Loads data from a KML file of bars.
+    </p>
 
-       var select2 = new OpenLayers.Control.SelectFeature(barPoints, {hover: true});
-       map.addControl(select2);
-       select2.activate();
+    <div id="map" class="smallmap"></div>
 
-       // Create a styleMap to style your features for two different
-       // render intents.  The style for the 'default' render intent will
-       // be applied when the feature is first drawn.  The style for the
-       // 'select' render intent will be applied when the feature is
-       // selected.
-       var myStyles = new OpenLayers.StyleMap({
-           "default": new OpenLayers.Style({
-               pointRadius: "6", // sized according to type attribute
-               fillColor: "#ffcc66",
-               strokeColor: "#ff9933",
-               strokeWidth: 2,
-               graphicZIndex: 1
-           }),
-           "select": new OpenLayers.Style({
-               fillColor: "#66ccff",
-               strokeColor: "#3399ff",
-               graphicZIndex: 2
-           })
-       });
-       
-       // Create a vector layer and give it your style map.
-       var points = new OpenLayers.Layer.Vector("Points", {
-           styleMap: myStyles,
-           rendererOptions: {zIndexing: true}
-       });
+    <div id="docs"></div>
+  </body>
+</html>
 
-       
-       // Create a select feature control and add it to the map.
-       var select = new OpenLayers.Control.SelectFeature(points, {hover: true});
-       map.addControl(select);
-       select.activate();
-       
-
-   
- 
-
-       var foodPois = new OpenLayers.Layer.Text( "Food",
-               { location:"./food.txt",
-                 projection: map.displayProjection
-               });
-       map.addLayers([wms, points, barPoints, foodPois]);
-       // create layer switcher widget in top right corner of map.
-       var layer_switcher= new OpenLayers.Control.LayerSwitcher({});
-
-       map.addControl(layer_switcher);
-       //Set start centrepoint and zoom    
-
-       var lonLat = new OpenLayers.LonLat(8.752112, 51.715836 )
-          .transform(
-            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
-            map.getProjectionObject() // to Spherical Mercator Projection
-          );
-       map.setCenter(lonLat, 15);
-   }
-
- 
-  </script>
-<body onload="init2()">
-<h1 id="title">BarMap</h1>
-  <div id="mapdiv"></div>
-</body></html>
