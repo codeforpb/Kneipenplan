@@ -15,11 +15,11 @@
 	</StyleMap>
 	<Style id="sh_sunny_copy69">
 		<IconStyle>
-			<scale>1.4</scale>
+			<scale>1.0</scale>
 			<Icon>
-				<href>http://maps.google.com/mapfiles/kml/shapes/sunny.png</href>
+				<href>{{site.baseurl}}/img/pub_marker.png</href>
 			</Icon>
-			<hotSpot x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
+			<hotSpot x="0.5" y="0.2" xunits="fraction" yunits="fraction"/>
 		</IconStyle>
 		<LabelStyle>
 			<color>ff00aaff</color>
@@ -27,11 +27,11 @@
 	</Style>
 	<Style id="sn_sunny_copy68">
 		<IconStyle>
-			<scale>1.2</scale>
+			<scale>1.0</scale>
 			<Icon>
-				<href>http://maps.google.com/mapfiles/kml/shapes/sunny.png</href>
+				<href>{{site.baseurl}}/img/pub_marker.png</href>
 			</Icon>
-			<hotSpot x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
+			<hotSpot x="0.5" y="0.2" xunits="fraction" yunits="fraction"/>
 		</IconStyle>
 		<LabelStyle>
 			<color>ff00aaff</color>
@@ -39,11 +39,11 @@
 	</Style>
 	<Style id="sn_sunny_copy69">
 		<IconStyle>
-			<scale>1.2</scale>
+			<scale>1.0</scale>
 			<Icon>
-				<href>http://maps.google.com/mapfiles/kml/shapes/sunny.png</href>
+				<href>{{site.baseurl}}/img/pub_marker.png</href>
 			</Icon>
-			<hotSpot x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
+			<hotSpot x="0.5" y="0.2" xunits="fraction" yunits="fraction"/>
 		</IconStyle>
 		<LabelStyle>
 			<color>ff00aaff</color>
@@ -53,9 +53,9 @@
 		<IconStyle>
 			<scale>1.4</scale>
 			<Icon>
-				<href>http://maps.google.com/mapfiles/kml/shapes/sunny.png</href>
+				<href>{{site.baseurl}}/img/pub_marker.png</href>
 			</Icon>
-			<hotSpot x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
+			<hotSpot x="0.5" y="0.2" xunits="fraction" yunits="fraction"/>
 		</IconStyle>
 		<LabelStyle>
 			<color>ff00aaff</color>
