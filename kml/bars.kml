@@ -96,7 +96,7 @@
                                {% else %}
                                   {{ bar.name }}
                                {% endif %}]]></name>
-				<description><![CDATA[<span class="special">{{ bar.special }}</span>{{ bar.content | remove: '<p>' | remove: '</p>'}}]]></description>
+				<description><![CDATA[<span class="special">{{ bar.special }}</span><br/>{{ bar.content | remove: '<p>' | remove: '</p>'}}]]></description>
 				<LookAt>
 					<longitude>{{ bar.lon }}</longitude>
 					<latitude>{{ bar.lat }}</latitude>

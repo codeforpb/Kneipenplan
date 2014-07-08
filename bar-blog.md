@@ -11,7 +11,7 @@ layout: default
       <li>
         <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
         <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.name }}</a>
-        <p><span class="special">{{ post.special }}</span>{{ post.content | remove: '<p>' | remove: '</p>'}}</p>
+        <p><span class="special">{{ post.special }}</span><br/>{{ post.content | remove: '<p>' | remove: '</p>'}}</p>
       </li>
     {% endfor %}
   </ul>
