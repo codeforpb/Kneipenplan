@@ -1,5 +1,0 @@
----
-title: for openlayers
----
-lat	lon	title	description	icon	iconSize	iconOffset{% for food in site.data.fast-foods %}
-{{ food.lat }}	{{ food.lon }}	{{ food.name }}	<span>{{ food.special }}</span><p>{{ food.comment }}<br><a href="{{ food.url }}">{{ food.url }}</a></p>	./img/marker-green.png	24,24	0,-24{% endfor %}

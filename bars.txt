@@ -1,5 +1,0 @@
----
-title: for openlayers
----
-lat	lon	title	description	icon	iconSize	iconOffset{% for bar in site.data.bars %}
-{{ bar.lat }}	{{ bar.lon }}	{{ bar.name }}	<span>{{ bar.special }}</span><p>{{ bar.comment }}</p>	./img/marker-gold.png	24,24	0,-24{% endfor %}
