@@ -111,16 +111,19 @@ title: Kneipenplan
 
     <div id="blog">
     {% for post in site.posts %}
+       {% if post.content != '' %}
         <div class="post">
           <h3>{{ post.name }}</h3>
-          {% if bar.special %}
+          {% if post.special %}
             <p class="post_special">{{ post.special }}</p>
           {% endif %}
           <p class="post_time">{{ post.date | date: "%-d.%-m.%y" }}</p>
           <p class="post_content">{{ post.content | remove: '<p>' | remove: '</p>' }}</p>
-          {% if bar.link %} 
-            <a href="bar.link">bar.link</a>
+          {% if post.link %} 
+            <a href="{{ post.link }}">{{ post.link }}</a>
           {% endif %}
+        </div>
+       {% endif %}
     {% endfor %}
     </div>
   </body>
