@@ -1,6 +1,5 @@
 ---
 name: "Zum Ölberg"
-special: ""
 lat: 51.720867
 lon: 8.759393
 link: "http://www.zumölberg.de"
