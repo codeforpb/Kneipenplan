@@ -1,0 +1,14 @@
+---
+# Remember to set production_url in your _config.yml file!
+title : JSON
+---
+
+[{% for food in site.categories.food %}
+  {
+    "name": {{ food.name | jsonify }},
+    "lat": {{ food.lat }},
+    "lon": {{ food.lon }}{% if food.link %},"link": {{ food.link | jsonify }}{% endif %}
+    {% if food.special %},"special": {{ food.special | jsonify }}{% endif %}
+    {% if food.content %},"comment": {{ food.content | markdownify | remove: '<p>' | remove: '</p>' | strip | jsonify }}{% endif %}
+  }{% if forloop.last %}{% else %},{% endif %}{% endfor %}
+]
