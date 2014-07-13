@@ -7,9 +7,7 @@ title: Kneipenplan
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>OpenLayers: bars on a Spherical Mercator Map</title>
-    <script src="http://maps.google.com/maps/api/js?v=3&amp;sensor=false"></script>
-    <link rel="stylesheet" href="../theme/default/style.css" type="text/css">
+    <title>Paderborner Kneipenplan</title>
     <link rel="stylesheet" href="style.css" type="text/css">
 
     <style type="text/css">
@@ -26,9 +24,6 @@ title: Kneipenplan
     </style>
     <script src="../OpenLayers.js"></script>
     <script type="text/javascript">
-        var lon = 5;
-        var lat = 40;
-        var zoom = 5;
         var map, select;
 
         function init(){
@@ -97,35 +92,8 @@ title: Kneipenplan
     </script>
   </head>
   <body onload="init()">
-      <h1 id="title">OSM + Google Maps + KML Reprojection</h1>
-
-      <div id="tags">
-          osm, kml, spherical, mercator, reprojection, feature, popup, advanced
-      </div>
-
-      <p id="shortdesc">
-          Demonstrates loading and displaying a KML file on top of OpenStreetMap (OSM) and Google Maps data. Loads data from a KML file of bars.
-    </p>
-
-    <div id="map" class="smallmap"></div>
-
-    <div id="blog">
-    {% for post in site.posts %}
-       {% if post.content != '' %}
-        <div class="post">
-          <h3>{{ post.name }}</h3>
-          {% if post.special %}
-            <p class="post_special">{{ post.special }}</p>
-          {% endif %}
-          <p class="post_time">{{ post.date | date: "%-d.%-m.%y" }}</p>
-          <p class="post_content">{{ post.content | remove: '<p>' | remove: '</p>' }}</p>
-          {% if post.link %} 
-            <a href="{{ post.link }}">{{ post.link }}</a>
-          {% endif %}
-        </div>
-       {% endif %}
-    {% endfor %}
-    </div>
+    <h1 id="title">Paderborner Kneipenplan</h1>
+    <div id="map" class="map" />
   </body>
 </html>
 
