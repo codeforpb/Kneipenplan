@@ -58,13 +58,13 @@ title: Kneipenplan
             select.activate();   
 
             map.addControl(new OpenLayers.Control.LayerSwitcher());
-
-                   var lonLat = new OpenLayers.LonLat(8.752112, 51.715836 )
+ 
+                   var lonLat = new OpenLayers.LonLat(8.75456929206848, 51.71960448493701 )
           .transform(
             new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
             map.getProjectionObject() // to Spherical Mercator Projection
           );
-       map.setCenter(lonLat, 15);
+       map.setCenter(lonLat, 13);
         }
         function onPopupClose(evt) {
             select.unselectAll();
