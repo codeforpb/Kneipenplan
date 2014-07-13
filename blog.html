@@ -1,0 +1,104 @@
+---
+title: Kneipenplan
+---
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Paderborner Kneipenplan</title>
+    <link rel="stylesheet" href="../style.css" type="text/css">
+
+    <style type="text/css">
+        html, body {
+            height: 100%;
+        }
+        #map {
+            width: 100%;
+            height: 80%;
+            border: 1px solid black;
+        }
+        .olPopup p { margin:0px; font-size: .9em;}
+        .olPopup h2 { font-size:1.2em; }
+    </style>
+    <script src="../OpenLayers.js"></script>
+    <script type="text/javascript">
+        var map, select;
+
+        function init(){
+            var options = {
+                projection: new OpenLayers.Projection("EPSG:900913"),
+                displayProjection: new OpenLayers.Projection("EPSG:4326")
+            };
+            map = new OpenLayers.Map('map', options);
+            var mapnik = new OpenLayers.Layer.OSM("OpenStreetMap (Mapnik)");
+            var bars = new OpenLayers.Layer.Vector("KML", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "kml/bars.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true,
+                        extractAttributes: true
+                    })
+                })
+            });
+
+            map.addLayers([mapnik, bars]);
+
+            select = new OpenLayers.Control.SelectFeature(bars);
+            
+            bars.events.on({
+                "featureselected": onFeatureSelect,
+                "featureunselected": onFeatureUnselect
+            });
+  
+            map.addControl(select);
+            select.activate();   
+
+            map.addControl(new OpenLayers.Control.LayerSwitcher());
+
+                   var lonLat = new OpenLayers.LonLat(8.752112, 51.715836 )
+          .transform(
+            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            map.getProjectionObject() // to Spherical Mercator Projection
+          );
+       map.setCenter(lonLat, 15);
+        }
+        function onPopupClose(evt) {
+            select.unselectAll();
+        }
+        function onFeatureSelect(event) {
+            var feature = event.feature;
+            var selectedFeature = feature;
+            var popup = new OpenLayers.Popup.FramedCloud("chicken", 
+                feature.geometry.getBounds().getCenterLonLat(),
+                new OpenLayers.Size(100,100),
+                "<h2>"+feature.attributes.name + "</h2><div class='description'>" + feature.attributes.description + "</div>",
+                null, true, onPopupClose
+            );
+            feature.popup = popup;
+            map.addPopup(popup);
+        }
+        function onFeatureUnselect(event) {
+            var feature = event.feature;
+            if(feature.popup) {
+                map.removePopup(feature.popup);
+                feature.popup.destroy();
+                delete feature.popup;
+            }
+        }
+    </script>
+  </head>
+  <body>
+    <div id="blog">
+    {% for post in site.posts %}
+       {% if post.content != '' %}
+            {% include post.html %}
+       {% endif %}
+    {% endfor %}
+    </div>
+  </body>
+</html>
+
