@@ -33,7 +33,7 @@ title: Kneipenplan
             };
             map = new OpenLayers.Map('map', options);
             var mapnik = new OpenLayers.Layer.OSM("OpenStreetMap (Mapnik)");
-            var bars = new OpenLayers.Layer.Vector("KML", {
+            var bars = new OpenLayers.Layer.Vector("Bars", {
                 projection: map.displayProjection,
                 strategies: [new OpenLayers.Strategy.Fixed()],
                 protocol: new OpenLayers.Protocol.HTTP({
@@ -44,8 +44,19 @@ title: Kneipenplan
                     })
                 })
             });
+            var foods = new OpenLayers.Layer.Vector("Food", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "kml/foods.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true,
+                        extractAttributes: true
+                    })
+                })
+            });
 
-            map.addLayers([mapnik, bars]);
+            map.addLayers([mapnik, bars, foods]);
 
             select = new OpenLayers.Control.SelectFeature(bars);
             
