@@ -10,18 +10,6 @@ title: Kneipenplan
     <title>Paderborner Kneipenplan</title>
     <link rel="stylesheet" href="style.css" type="text/css">
 
-    <style type="text/css">
-        html, body {
-            height: 100%;
-        }
-        #map {
-            width: 100%;
-            height: 80%;
-            border: 1px solid black;
-        }
-        .olPopup p { margin:0px; font-size: .9em;}
-        .olPopup h2 { font-size:1.2em; }
-    </style>
     <script src="OpenLayers.js"></script>
     <script type="text/javascript">
         var map, select;
@@ -58,15 +46,30 @@ title: Kneipenplan
 
             map.addLayers([mapnik, bars, foods]);
 
-            select = new OpenLayers.Control.SelectFeature(bars);
+            selectBars = new OpenLayers.Control.SelectFeature(bars);
             
             bars.events.on({
                 "featureselected": onFeatureSelect,
                 "featureunselected": onFeatureUnselect
             });
-  
-            map.addControl(select);
-            select.activate();   
+           
+            map.addControl(selectBars);
+            selectBars.activate();   
+
+            selectFoods = new OpenLayers.Control.SelectFeature(foods);
+            
+            bars.events.on({
+                "featureselected": onFeatureSelect,
+                "featureunselected": onFeatureUnselect
+            });
+           
+            map.addControl(selectFoods);
+            selectFoods.activate();   
+
+            foods.events.on({
+                "featureselected": onFeatureSelect,
+                "featureunselected": onFeatureUnselect
+            });
 
             map.addControl(new OpenLayers.Control.LayerSwitcher());
  
@@ -78,7 +81,8 @@ title: Kneipenplan
        map.setCenter(lonLat, 13);
         }
         function onPopupClose(evt) {
-            select.unselectAll();
+            selectBars.unselectAll();
+            selectFoods.unselectAll();
         }
         function onFeatureSelect(event) {
             var feature = event.feature;
@@ -103,8 +107,11 @@ title: Kneipenplan
     </script>
   </head>
   <body onload="init()">
-    <h1 id="title">Paderborner Kneipenplan</h1>
-    <div id="map" class="map" />
+    <div id="map" class="map">
+        <div class="header>
+            <h1 id="title">Paderborner Kneipenplan</h1>
+        </div>
+    </div>
   </body>
 </html>
 
