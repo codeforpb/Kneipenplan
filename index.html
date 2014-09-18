@@ -44,9 +44,36 @@ title: Kneipenplan
                     })
                 })
             });
+
+			styleMap = new OpenLayers.StyleMap({'default':{
+                        label : "${label}",
+                        fontColor: "black",
+                        fontSize: "14px",
+                        fontWeight: "bold",
+                        labelAlign: "${labelAlign}",
+                        pointRadius: 7,
+						fillColor: "white",
+						strokeColor: "white",
+                        labelXOffset : "0",
+                        labelYOffset : "0"
+                    }});
+
+            var numbered = new OpenLayers.Layer.Vector("Nummeriert", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "kml/numbered_plan.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true,
+                        extractAttributes: true
+                    })
+                }),
+				styleMap: styleMap
+            });
             
 
-            map.addLayers([mapnik, bars]);
+            //map.addLayers([mapnik, alternative, numbered, bars]);
+            map.addLayers([mapnik, numbered]);
 
             select = new OpenLayers.Control.SelectFeature(bars);
             
