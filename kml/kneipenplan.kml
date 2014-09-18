@@ -1,4 +1,6 @@
 ---
+layout: none
+---
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://earth.google.com/kml/2.2">
 <Document>
@@ -39,7 +41,7 @@
 			</ListStyle>
 		</Style>
 		<Folder>
-			<name>High Resolution</name>{% for bar in site.categories.bars %}
+			<name>Bars</name>{% for bar in site.categories.bars %}
 			<Placemark>
 				<name><![CDATA[{% if bar.link %}
                                   <a href="{{ bar.link }}">{{ bar.name }}</a>
@@ -98,7 +100,7 @@
 			</ListStyle>
 		</Style>
 		<Folder>
-			<name>High Resolution</name>{% for food in site.categories.food %}
+			<name>Take Aways</name>{% for food in site.categories.food %}
 			<Placemark>
 				<name><![CDATA[{% if food.link %}
                                   <a href="{{ food.link }}">{{ food.name }}</a>
