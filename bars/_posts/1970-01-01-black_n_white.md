@@ -1,5 +1,5 @@
 ---
-name: "Black & White"
+name: "Black 'n White"
 special: "Nicht identifizierbares Bier 0,3: 2,20"
 lat: 51.716564
 lon: 8.747714
