@@ -3,7 +3,8 @@
 title : JSON
 ---
 
-[{% for bar in site.categories.bars %}
+{% assign sorted_bars = (site.categories.bars | sort: 'name') %}
+[{% for bar in sorted_bars %}
   {
     "name": {{ bar.name | jsonify }},
     "lat": {{ bar.lat }},
