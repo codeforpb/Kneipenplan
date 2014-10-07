@@ -34,18 +34,18 @@ layout: none
 			<heading>0</heading>
 		</LookAt>
 		<Folder>
-		{% assign counter = 0 %}
-		{% assign sorted_bars = (site.categories.bars | sort: 'name') %}
+{% assign sorted_bars = (site.categories.bars | sort: 'name') %}
+{% assign number = 1 %}
 			<name>Numbered Bars</name>{% for bar in sorted_bars %}
-            {% assign counter=counter | plus:1 %}
 			<Placemark>
-				<label>{{ counter }}</label>
+				<label>{{ number }}</label>
 		        <labelAlign>center</labelAlign>
 				<name></name>
 				<description></description>
 				<Point>
 					<coordinates>{{ bar.lon }},{{ bar.lat }},0</coordinates>
 				</Point>
+    {% assign number=number	 | plus:1 %}
 			</Placemark>{% endfor %}
 		</Folder>
 	</Folder>
