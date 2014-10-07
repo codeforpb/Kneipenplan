@@ -71,8 +71,8 @@ title: Kneipenplan
 				styleMap: styleMap
             });
             
-
-	        map.addLayers([mapnik, numbered, bars]);
+            numbered.setVisibility(false);
+	    map.addLayers([mapnik, numbered, bars]);
 
             select = new OpenLayers.Control.SelectFeature(bars);
             
@@ -91,7 +91,7 @@ title: Kneipenplan
             new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
             map.getProjectionObject() // to Spherical Mercator Projection
           );
-       map.setCenter(lonLat, 13);
+       map.setCenter(lonLat, 15);
         }
         function onPopupClose(evt) {
             select.unselectAll();
