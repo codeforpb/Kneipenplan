@@ -10,6 +10,7 @@ title : JSON
     "lon": {{ bar.lon }}{% if bar.link %},"link": {{ bar.link | jsonify }}{% endif %}
     {% if bar.special %},"special": {{ bar.special | jsonify }}{% endif %}
     {% if bar.content %},"comment": {{ bar.content | markdownify | remove: '<p>' | remove: '</p>' | strip | jsonify }}{% endif %}
+    {% if bar.tel %},"tel": {{ bar.tel | jsonify }}{% endif %}
   }{% if forloop.last %}{% else %},{% endif %}{% endfor %}
 ],
 "food": [{% assign sorted_food = (site.categories.food | sort: 'name') %}
@@ -20,6 +21,7 @@ title : JSON
     "lon": {{ place.lon }}{% if place.link %},"link": {{ place.link | jsonify }}{% endif %}
     {% if place.special %},"special": {{ place.special | jsonify }}{% endif %}
     {% if place.content %},"comment": {{ place.content | markdownify | remove: '<p>' | remove: '</p>' | strip | jsonify }}{% endif %}
+    {% if place.tel %},"tel": {{ place.tel | jsonify }}{% endif %}
     {% assign number=number  | plus:1 %}
   }{% if forloop.last %}{% else %},{% endif %}{% endfor %}
 ]
