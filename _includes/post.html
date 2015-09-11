@@ -1,11 +1,19 @@
-<div class="post">
-  <h2>{{ post.name }}</h2>
-  {% if post.special %}
-    <p class="post_special">{{ post.special }}</p>
-  {% endif %}
-  <p class="post_time">{{ post.date | date: "%-d.%-m.%y" }}</p>
-  <p class="post_content">{{ post.content | remove: '<p>' | remove: '</p>' }}</p>
-  {% if post.link %} 
-    <a href="{{ post.link }}">{{ post.link }}</a>
-  {% endif %}
-</div>
+<article class="post">
+  <header>
+    <time class="post_time" datetime="{{ post.date }}">{{ post.date | date: "%d.%m.%Y" }}</time>
+    <h2 class="postHeading">{{ post.name }}</h2>
+  </header>
+  <div class="post_content">
+    {% if post.special %}
+    <p><strong>Special:</strong>{{ post.special }}</p>
+    {% endif %}
+
+    {% if post.link %} 
+    <p><a class="post_link" href="{{ post.link }}">{{ post.link }}</a></p>
+    {% endif %}
+
+    <p>{{ post.content }}</p>
+
+    
+  </div>
+</article>
