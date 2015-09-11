@@ -1,7 +1,8 @@
 # Paderborner Kneipenplan
 
 Basierend auf dem Kneipenplan der Fachschaft Mathematik/Informatik mit
-deren freundlicher Genehmigung. (http://die-fachschaft.de/kneipenplan)
+deren freundlicher Genehmigung. Die Live-Version ist unter http://codeforpb.github.io/Kneipenplan/
+zu finden.
 
 Die erste bekannte Version des Kneipenplans wurde für die Tagung der 
 deutschsprachigen Mathematikfachschaften im Herbst 1990 erstellt. Die Teilnehmer 
