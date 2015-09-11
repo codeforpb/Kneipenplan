@@ -1,7 +1,16 @@
 # Paderborner Kneipenplan
+
 Basierend auf dem Kneipenplan der Fachschaft Mathematik/Informatik mit
 deren freundlicher Genehmigung. (http://die-fachschaft.de/kneipenplan)
 
+Die erste bekannte Version des Kneipenplans wurde für die Tagung der 
+deutschsprachigen Mathematikfachschaften im Herbst 1990 erstellt. Die Teilnehmer 
+dieser Tagung wurden mit einem Verzeichnis der Paderborner Kneipen begrüßt. Der 
+ursprüngliche Plan kann auf den Seiten der Fachschaft heruntergeladen werden: 
+https://fsmi.uni-paderborn.de/service/essen-und-trinken/kneipenplan/version-10/
+
+
+# Zur Entwicklung
 ## Kneipenplan updaten
 Öffne entweder einen Issue mit Änderungen oder Vorschlägen, oder sende eine Email an ljan@mail.upb.de - es wird jedoch an einer besseren Methode gearbeitet ;)
 
