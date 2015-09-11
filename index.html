@@ -3,7 +3,7 @@ title: Kneipenplan
 ---
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,18 +33,18 @@ title: Kneipenplan
                 })
             });
 
-			styleMap = new OpenLayers.StyleMap({'default':{
-                        label : "${label}",
-                        fontColor: "black",
-                        fontSize: "14px",
-                        fontWeight: "bold",
-                        labelAlign: "${labelAlign}",
-                        pointRadius: 7,
-						fillColor: "white",
-						strokeColor: "white",
-                        labelXOffset : "0",
-                        labelYOffset : "0"
-                    }});
+            styleMap = new OpenLayers.StyleMap({'default':{
+                label : "${label}",
+                fontColor: "black",
+                fontSize: "14px",
+                fontWeight: "bold",
+                labelAlign: "${labelAlign}",
+                pointRadius: 7,
+                fillColor: "white",
+                strokeColor: "white",
+                labelXOffset : "0",
+                labelYOffset : "0"
+            }});
 
             var numbered = new OpenLayers.Layer.Vector("Nummeriert", {
                 projection: map.displayProjection,
@@ -56,11 +56,11 @@ title: Kneipenplan
                         extractAttributes: true
                     })
                 }),
-				styleMap: styleMap
+                styleMap: styleMap
             });
             
             numbered.setVisibility(false);
-	    map.addLayers([mapnik, numbered, bars]);
+            map.addLayers([mapnik, numbered, bars]);
 
             select = new OpenLayers.Control.SelectFeature(bars);
             
@@ -68,18 +68,18 @@ title: Kneipenplan
                 "featureselected": onFeatureSelect,
                 "featureunselected": onFeatureUnselect
             });
-  
+
             map.addControl(select);
             select.activate();   
 
             map.addControl(new OpenLayers.Control.LayerSwitcher());
- 
-                   var lonLat = new OpenLayers.LonLat(8.75456929206848, 51.71960448493701 )
-          .transform(
+
+            var lonLat = new OpenLayers.LonLat(8.75456929206848, 51.71960448493701 )
+            .transform(
             new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
             map.getProjectionObject() // to Spherical Mercator Projection
-          );
-       map.setCenter(lonLat, 15);
+            );
+            map.setCenter(lonLat, 15);
         }
         function onPopupClose(evt) {
             select.unselectAll();
@@ -92,7 +92,7 @@ title: Kneipenplan
                 new OpenLayers.Size(100,100),
                 "<h2>"+feature.attributes.name + "</h2><div class='description'>" + feature.attributes.description + "</div>",
                 null, true, onPopupClose
-            );
+                );
             feature.popup = popup;
             map.addPopup(popup);
         }
@@ -105,10 +105,16 @@ title: Kneipenplan
             }
         }
     </script>
-  </head>
-  <body onload="init()">
-    <h1 id="title">Paderborner Kneipenplan</h1>
-    <div id="map" class="map" />
-  </body>
+</head>
+<body onload="init()">
+    <div id="map" class="map"></div>
+    <div>
+      <nav class="footnav">
+        <ul>
+            <li><a href="https://github.com/codeforpb/Kneipenplan/blob/master/README.md">Über das Projekt</a></li>
+        </ul>
+    </nav>
+</div>
+</body>
 </html>
 
