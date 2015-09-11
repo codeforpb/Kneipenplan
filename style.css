@@ -3,7 +3,7 @@
  * From Blueprint reset.css
  * http://blueprintcss.googlecode.com
  */
- html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {margin:0;padding:0;border:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline;}
+ html, body, div, span, p, blockquote, pre {margin:0;padding:0;border:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline;}
  table {border-collapse:separate;border-spacing:0;}
  caption, th, td {text-align:left;font-weight:normal;}
  table, td, th {vertical-align:middle;}
@@ -11,11 +11,65 @@
  blockquote, q {quotes:"" "";}
  a img {border:none;}
 
+h1,h2,h3 {
+  margin:0;
+}
+
  body {
+  background-color: antiquewhite;
   width: 100%;
   height: 100%;
 }
+ header{
+  margin: 0;
 
+  background-color: white;
+}
+.content-wrap{
+  background-color: white;
+  max-width: 40em;
+  padding: 16px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post {
+  margin-top: 2em;
+  padding: 8px;
+  border: groove;
+}
+.post header {
+  position: relative;
+}
+.post_time{
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}
+
+.post_content p{
+margin-top: 8px; 
+}
+.postHeading{
+    display: inline-block;
+    display:block;
+}
+
+.post_link{
+}
+
+/*<div class="post">
+  <h2>{{ post.name }}</h2>
+  {% if post.special %}
+    <p class="post_special">{{ post.special }}</p>
+  {% endif %}
+  <p class="post_time">{{ post.date | date: "%-d.%-m.%y" }}</p>
+  <p class="post_content">{{ post.content | remove: '<p>' | remove: '</p>' }}</p>
+  {% if post.link %} 
+    <a href="{{ post.link }}">{{ post.link }}</a>
+  {% endif %}
+</div>
+*/
 div#map {
   width: 100%;
   height: 100%;
