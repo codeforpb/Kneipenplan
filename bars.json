@@ -10,7 +10,10 @@ title : JSON
     "number": {{ number }},
     "name": {{ bar.name | jsonify }},
     "lat": {{ bar.lat }},
-    "lon": {{ bar.lon }}{% if bar.link %},"link": {{ bar.link | jsonify }}{% endif %}
+    "lon": {{ bar.lon }}{% if bar.link %},
+    "link": {{ bar.link | jsonify }}{% endif %},
+    "streetAndNr": {{ bar.streetAndNr | jsonify }},
+    "plz" : {{ bar.plz | jsonify }}
     {% if bar.special %},"special": {{ bar.special | jsonify }}{% endif %}
     {% if bar.content %},"comment": {{ bar.content | markdownify | remove: '<p>' | remove: '</p>' | strip | jsonify }}{% endif %}
     {% if bar.tel %},"tel": {{ bar.tel | jsonify }}{% endif %}
