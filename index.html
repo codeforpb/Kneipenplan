@@ -8,9 +8,9 @@ title: Kneipenplan
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title>Paderborner Kneipenplan</title>
-    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="{{ site.baseurl }}/style.css" type="text/css">
 
-    <script src="OpenLayers.js"></script>
+    <script src="{{ site.baseurl }}/OpenLayers.js"></script>
     <script type="text/javascript">
         var map, select;
 
@@ -25,7 +25,7 @@ title: Kneipenplan
                 projection: map.displayProjection,
                 strategies: [new OpenLayers.Strategy.Fixed()],
                 protocol: new OpenLayers.Protocol.HTTP({
-                    url: "kml/bars.kml",
+                    url: "{{ site.baseurl }}/kml/bars.kml",
                     format: new OpenLayers.Format.KML({
                         extractStyles: true,
                         extractAttributes: true
@@ -36,7 +36,7 @@ title: Kneipenplan
                 projection: map.displayProjection,
                 strategies: [new OpenLayers.Strategy.Fixed()],
                 protocol: new OpenLayers.Protocol.HTTP({
-                    url: "kml/food.kml",
+                    url: "{{ site.baseurl }}/kml/food.kml",
                     format: new OpenLayers.Format.KML({
                         extractStyles: true,
                         extractAttributes: true
@@ -61,7 +61,7 @@ title: Kneipenplan
                 projection: map.displayProjection,
                 strategies: [new OpenLayers.Strategy.Fixed()],
                 protocol: new OpenLayers.Protocol.HTTP({
-                    url: "kml/numbered_plan.kml",
+                    url: "{{ site.baseurl }}/kml/numbered_plan.kml",
                     format: new OpenLayers.Format.KML({
                         extractStyles: true,
                         extractAttributes: true

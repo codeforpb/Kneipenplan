@@ -9,7 +9,7 @@ layout: none
 		<IconStyle>
 			<scale>1.0</scale>
 			<Icon>
-				<href>img/pub_marker.png</href>
+				<href>{{ site.baseurl }}/img/pub_marker.png</href>
 			</Icon>
 			<hotSpot x="0.5" y="0.2" xunits="fraction" yunits="fraction"/>
 		</IconStyle>
