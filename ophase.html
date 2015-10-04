@@ -1,0 +1,103 @@
+---
+title: Kneipenplan Druckversion
+---
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Paderborner Kneipenplan</title>
+    <link rel="stylesheet" href="{{ site.baseurl }}/style.css" type="text/css">
+
+    <script src="{{ site.baseurl }}/OpenLayers.js"></script>
+    <script type="text/javascript">
+        var map, select;
+
+        function init(){
+            var options = {
+                projection: new OpenLayers.Projection("EPSG:900913"),
+                displayProjection: new OpenLayers.Projection("EPSG:4326")
+            };
+            map = new OpenLayers.Map('pmap', options);
+            var mapnik = new OpenLayers.Layer.OSM("OpenStreetMap (Mapnik)");
+
+            styleMap = new OpenLayers.StyleMap({'default':{
+                label : "${label}",
+                fontColor: "black",
+                fontSize: "14px",
+                fontWeight: "bold",
+                labelAlign: "${labelAlign}",
+                pointRadius: 7,
+                fillColor: "white",
+                strokeColor: "white",
+                labelXOffset : "0",
+                labelYOffset : "0"
+            }});
+
+            var numbered = new OpenLayers.Layer.Vector("Nummeriert", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "{{ site.baseurl }}/kml/numbered_plan.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true,
+                        extractAttributes: true
+                    })
+                }),
+                styleMap: styleMap
+            });
+            
+            map.addLayers([mapnik, numbered]);
+
+            var lonLat = new OpenLayers.LonLat(8.75, 51.7184 )
+            .transform(
+            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            map.getProjectionObject() // to Spherical Mercator Projection
+            );
+            map.setCenter(lonLat, 16);
+        }
+    </script>
+</head>
+<body onload="init()">
+    <div id="pmap" style="
+  width: 28.7cm;
+  height: 20cm;">
+</div>
+<div class="page-break"></div>
+
+<div class="content">
+<table class="barList">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Adresse</th>
+        <th>Telefonnummer</th>
+        <th>Studenten</th>
+        <th>Teamer</th>
+    </tr>
+</thead>
+
+<tbody>
+    {% assign sorted_bars = (site.categories.bars | sort: 'name') %}
+    {% assign number = 1 %}
+    {% for bar in sorted_bars %}
+
+    <tr>
+        <td>{{ number }}</td>
+        <td><a href="{{ site.baseurl }}{{ bar.url }}">{{ bar.name }}</a></td>
+        <td>{{ bar.streetAndNr }}</td>
+        <td>{{ bar.tel }}</td>
+        <td>{{ bar.student | strip }}</td>
+        <td>{{ bar.teamer | strip }}</td>
+    </tr>
+    {% assign number=number  | plus:1 %}
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+
+</body>
+</html>
+
