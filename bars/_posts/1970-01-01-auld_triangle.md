@@ -3,6 +3,7 @@ name: "Auld Triangle"
 special: "Guinness 0,4: 3,70; Karlsberg 0,20: 1,90; Cider 0,4: 3,70"
 lat: 51.716081
 lon: 8.757981
+address: "Kasseler Mauer 11, 33098 Paderborn"
 link: "http://www.auld-triangle.de"
 tel: "05251 296364"
 ---

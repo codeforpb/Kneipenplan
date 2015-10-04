@@ -2,6 +2,7 @@
 name: "Zum Ölberg"
 lat: 51.72087618818835 
 lon: 8.759397268295288
+address: "An den Kapuzinern 20, 33098 Paderborn"
 link: "http://www.zumölberg.de"
 tel: "05251 7097671"
 ---

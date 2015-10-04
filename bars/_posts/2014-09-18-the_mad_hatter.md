@@ -3,6 +3,7 @@ name: "The Mad Hatter"
 special: "Astra, 0,4 l für 2,80 €"
 lat: 51.72214674803249
 lon: 8.757042288780212
+address: "Ükern 28, 33098 Paderborn"
 link: "https://www.facebook.com/madhatterpb1"
 tel: "05251 282800"
 ---

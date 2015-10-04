@@ -3,6 +3,7 @@ name: "Zeitgeist"
 special: "Warsteiner 0,2: 1,40"
 lat: 51.716339
 lon: 8.749408
+address: "Westernstraße 27, 33098 Paderborn"
 link: "www.zeitgeist-paderborn.de"
 tel: "05251 281194"
 ---
