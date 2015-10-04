@@ -1,5 +1,5 @@
 ---
-name: "Lo Stuzzico Paderschänke"
+name: "Paderschänke"
 special: "Brinkhoff's 0,25: 1,90"
 lat: 51.719093
 lon: 8.749774
