@@ -96,3 +96,90 @@ nav > ul > li > a {
 .olPopup h2 { font-size:1.2em; }
 
 .page-break { display: none; }
+
+
+th{
+  border: 1px solid black;
+  font-weight: bold;
+}
+
+td{
+  border-bottom: 1px dashed black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+
+table {
+ width: 28.7cm;
+ border: 1px solid black;
+ border-collapse: collapse;
+}
+
+@media print{
+  @page {size: landscape}
+
+  #pmap {
+    width: 28.7cm;
+    height: 20cm;
+    top:50%;
+    left:50%;
+    margin:-28.7cm 0 0 -20cm;
+
+  }
+  .page-break { display: block; page-break-before: always; }
+  
+  th {
+    border: 0px;
+    font-weight: normal;
+    text-decoration: none;
+    font-size: 10pt;
+  }
+  td{
+    border-bottom: 1pt solid black;
+    border-top: 1pt solid black;
+    border-right: 0pt ;
+    border-left: 0pt ;
+    font-size: 8.5pt;
+  }
+
+  tbody tr td{
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  tbody tr td:nth-child(1){
+    max-width: 0.5cm;
+    width: 0.5cm;
+  }
+  tbody tr td:nth-child(2){
+    max-width : 3cm;
+    width: 3cm;
+    text-decoration: none;
+  }
+  tbody tr td:nth-child(2) a{
+    color: black;
+    text-decoration: none;
+  }
+  tbody tr td:nth-child(3){
+    max-width: 3cm;
+    width: 3cm;
+  }
+  tbody tr td:nth-child(4){
+    max-width: 4cm;
+    width: 4cm;
+  }
+  tbody tr td:nth-child(5){
+    max-width: 9.6cm;
+    width: 9.6cm;
+  }
+  tbody tr td:nth-child(6){
+    max-width: 9.6cm;
+    width: 9.6cm;
+  }
+
+
+  table {
+    width: 100%;
+    border: 1pt solid black;
+    border-collapse: collapse;
+  }
+}
