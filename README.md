@@ -1,14 +1,11 @@
 # Paderborner Kneipenplan
 
-Basierend auf dem Kneipenplan der Fachschaft Mathematik/Informatik mit
-deren freundlicher Genehmigung. Die Live-Version ist unter http://codeforpb.github.io/Kneipenplan/
-zu finden.
+**Dies ist nur ein temporärer Klon für die Angebote der Ophase. Updates am Kneipenplan selbst (Kneipe zu, Daten falsch, etc.) sollten entweder im Branch "upstream-master" gemacht und in den master branch gemergt werden; dadurch können sie leicht in die Live-Version überführt werden.**
 
-Die erste bekannte Version des Kneipenplans wurde für die Tagung der 
-deutschsprachigen Mathematikfachschaften im Herbst 1990 erstellt. Die Teilnehmer 
-dieser Tagung wurden mit einem Verzeichnis der Paderborner Kneipen begrüßt. Der 
-ursprüngliche Plan kann auf den Seiten der Fachschaft heruntergeladen werden: 
-https://fsmi.uni-paderborn.de/service/essen-und-trinken/kneipenplan/version-10/
+Basierend auf dem Kneipenplan der Fachschaft Mathematik/Informatik mit
+deren freundlicher Genehmigung. Die Live-Version ist unter http://codeforpb.github.io/Kneipenplan/ zu finden.
+
+Die erste bekannte Version des Kneipenplans wurde für die Tagung der deutschsprachigen Mathematikfachschaften im Herbst 1990 erstellt. Die Teilnehmer dieser Tagung wurden mit einem Verzeichnis der Paderborner Kneipen begrüßt. Der ursprüngliche Plan kann auf den Seiten der Fachschaft heruntergeladen werden: https://fsmi.uni-paderborn.de/service/essen-und-trinken/kneipenplan/version-10/
 
 
 # Zur Entwicklung
