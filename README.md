@@ -1,6 +1,8 @@
 # Paderborner Kneipenplan
 
-**Dies ist nur ein temporärer Klon für die Angebote der Ophase. Updates am Kneipenplan selbst (Kneipe zu, Daten falsch, etc.) sollten entweder im Branch "upstream-master" gemacht und in den master branch gemergt werden; dadurch können sie leicht in die Live-Version überführt werden.**
+**Dies ist nur ein temporärer Klon für die Angebote der Ophase. Updates am Kneipenplan selbst (Kneipe zu, Daten falsch, etc.) sollten entweder im Branch "upstream-master" gemacht und in den master branch gemergt werden; dadurch können sie leicht in die Live-Version überführt werden.
+
+Das Live-Repo sollte als remote hinzugefügt werden: ```git remote add upstream git@github.com:codeforpb/Kneipenplan.git```.**
 
 Basierend auf dem Kneipenplan der Fachschaft Mathematik/Informatik mit
 deren freundlicher Genehmigung. Die Live-Version ist unter http://codeforpb.github.io/Kneipenplan/ zu finden.
