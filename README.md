@@ -1,11 +1,65 @@
-# Paderborner Kneipenplan
-
 **Dies ist nur ein temporärer Klon für die Angebote der Ophase. Updates am 
 Kneipenplan selbst (Kneipe zu, Daten falsch, etc.) sollten entweder im Branch 
 "upstream-master" gemacht und in den master branch gemergt werden; dadurch 
-können sie leicht in die Live-Version überführt werden.**
+können sie leicht in die Live-Version überführt werden.
 
-**Das Live-Repo sollte als remote hinzugefügt werden:** ```git remote add upstream git@github.com:codeforpb/Kneipenplan.git```
+Das Live-Repo sollte als remote hinzugefügt werden: ```git remote add upstream 
+git@github.com:codeforpb/Kneipenplan.git```.**
+
+# OPhase
+
+## Quickstart
+
+ * [Jekyll](http://jekyllrb.com/docs/installation/) installieren
+ * Projekt clonen
+ * ```jekyll serve -w``` im geklonten Projekt ausführen
+ * Der Webserver sollte nun starten
+
+Ein aktueller Stand der Anfragen ist anschließend unter zu finden http://127.0.0.1:4000/Kneipenplan/ophase/
+
+## Lokalen Klon aktualisieren
+
+```cd $PROJECT_DIR; git pull```
+
+## Anfrage einpflegen
+
+Mit einem Text-Editor die Datei zur Kneipe unter ```bars/_posts/``` öffnen. 
+Anschließend die Felder ```student``` und ```teamer``` ergänzen.
+
+Beispiel: 
+```
+---
+name: "Zum Ölberg"
+lat: 51.72087618818835 
+lon: 8.759397268295288
+streetAndNr: "An den Kapuzinern 20"
+plz: "33098"
+link: "http://www.zumölberg.de"
+tel: "05251 7097671"
+student: "Bier: 0.3l 1.80€, 0.5l 2.80€; 
+Weizen 0.5l 2.80€; 
+Cola/Fanta/Sprite: 0.3l 1.90€, 0.5l  2.90€; 
+Cocktails 3.60€;
+Jägermeister 1.40€;
+Ölberger 1.30€"
+teamer: "Ölberger oder 0.3l Bier"
+---
+Mitwochs Weizen 0,5 für 2,40€, Donnerstag 2 Cocktails für 1 ab 19 Uhr
+```
+
+> Die Felder dürfen Zeilenumbrüche zur besseren Lesbarkeit enthalten; diese werden
+> in der Ausgabe ignoriert.
+
+## Kneipenplan-Handout drucken
+
+ * Starten wie Quickstart
+ * Ein Druck-Befehl auf http://127.0.0.1:4000/Kneipenplan/ophase/ erzeugt dank 
+   HTML & CSS ein fertiges Handout.
+
+> Falls zu viele Kneipen oder zu viele Angebote existieren, können einzelne 
+> Kneipen durch Löschen auf bars/_posts/ entfernt werden.
+
+# Paderborner Kneipenplan
 
 Basierend auf dem Kneipenplan der Fachschaft Mathematik/Informatik mit
 deren freundlicher Genehmigung. Die Live-Version ist unter 
