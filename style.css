@@ -169,6 +169,7 @@ table {
   }
   tbody tr td:nth-child(5){
     max-width: 9.6cm;
+    white-space: pre-wrap;
     width: 9.6cm;
   }
   tbody tr td:nth-child(6){
