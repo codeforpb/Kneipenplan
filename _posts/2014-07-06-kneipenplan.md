@@ -1,5 +1,4 @@
 ---
-layout: post
 name:  "Der Kneipenplan"
 date:   2014-06-23 18:23:54
 categories: jekyll update
