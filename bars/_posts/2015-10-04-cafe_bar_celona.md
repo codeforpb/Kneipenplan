@@ -3,7 +3,7 @@ name: "Cafe & Bar Celona"
 special: "Glenmorangie 10 yrs (4cl) 6,05; Krombacher 0,3: 2,25"
 lat: 51.716952403267
 lon: 8.754016757011414
-streetAndNr: "Rathausplatz 7 "
+streetAndNr: "Rathausplatz 7"
 plz: "33098"
 link: "http://www.cafe-bar-celona.de/paderborn.html"
 tel: "05251 1809123"
