@@ -80,7 +80,7 @@ title: Kneipenplan Druckversion
 </thead>
 
 <tbody>
-    {% assign sorted_bars = (site.categories.bars | sort: 'name') %}
+    {% assign sorted_bars = site.categories.bars | sort: 'name' %}
     {% assign number = 1 %}
     {% for bar in sorted_bars %}
 

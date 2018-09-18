@@ -4,7 +4,7 @@ title : JSON
 ---
 
 
-{% assign sorted_food = (site.categories.food | sort: 'name') %}
+{% assign sorted_food = site.categories.food | sort: 'name' %}
 {% assign number = 1 %}
 [{% for place in sorted_food %}
   {

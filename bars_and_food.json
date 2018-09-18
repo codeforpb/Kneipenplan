@@ -13,7 +13,7 @@ title : JSON
     {% if bar.tel %},"tel": {{ bar.tel | jsonify }}{% endif %}
   }{% if forloop.last %}{% else %},{% endif %}{% endfor %}
 ],
-"food": [{% assign sorted_food = (site.categories.food | sort: 'name') %}
+"food": [{% assign sorted_food = site.categories.food | sort: 'name' %}
 [{% for place in sorted_food %}
   {
     "name": {{ place.name | jsonify }},

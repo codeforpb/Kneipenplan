@@ -1,5 +1,4 @@
 ---
-layout: none
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://earth.google.com/kml/2.2">
@@ -34,7 +33,7 @@ layout: none
 			<heading>0</heading>
 		</LookAt>
 		<Folder>
-{% assign sorted_bars = (site.categories.bars | sort: 'name') %}
+{% assign sorted_bars = site.categories.bars | sort: 'name' %}
 {% assign number = 1 %}
 			<name>Numbered Bars</name>{% for bar in sorted_bars %}
 			<Placemark>
