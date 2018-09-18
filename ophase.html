@@ -70,11 +70,12 @@ title: Kneipenplan Druckversion
 <table class="barList">
     <thead>
     <tr>
-        <th>Nr</th>
+        <th>#</th>
         <th>Name</th>
         <th>Adresse</th>
         <th>Telefonnummer</th>
-        <th>Special</th>
+        <th>Studenten</th>
+        <th>Teamer</th>
     </tr>
 </thead>
 
@@ -88,7 +89,18 @@ title: Kneipenplan Druckversion
         <td><a href="{{ site.baseurl }}{{ bar.url }}">{{ bar.name }}</a></td>
         <td>{{ bar.streetAndNr }}</td>
         <td>{{ bar.tel }}</td>
-        <td>{{ bar.special }}</td>
+
+        {% if bar.student %}
+        <td>{{ bar.student | strip }}</td>
+        {% else %}
+        <td><center><small>Noch nicht angefragt.</small></center></td>
+        {% endif %}
+
+        {% if bar.teamer %}
+        <td>{{ bar.teamer | strip }}</td>
+        {% else %}
+        <td><center><small>Noch nicht angefragt.</small></center></td>
+        {% endif %}
     </tr>
     {% assign number=number  | plus:1 %}
     {% endfor %}
